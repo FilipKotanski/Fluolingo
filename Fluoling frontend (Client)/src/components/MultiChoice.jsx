@@ -269,23 +269,23 @@ const App = () => {
           <img src="../public/flamingo-logo.svg" alt="Fluolingo Logo" className="logo" />
           <h1 className="heading">Fluolingo</h1>
           <h2 className="tagline">Fly through the MultiChoice quiz</h2>
-          <button className="start-button" onClick={() => handleStartActivity('Beginner')}>Get Ready to Soar!</button>
+          <button className="start-button g-button" onClick={() => handleStartActivity('Beginner')}>Get Ready to Soar!</button>
         </div>
       ) : (
         <>
           <div className="language-selector">
-            <button className={`language-button ${selectedLanguage === 'French' ? 'selected' : ''}`} onClick={() => handleLanguageChange('French')}>French</button>
-            <button className={`language-button ${selectedLanguage === 'Czech' ? 'selected' : ''}`} onClick={() => handleLanguageChange('Czech')}>Czech</button>
-            <button className={`language-button ${selectedLanguage === 'Turkish' ? 'selected' : ''}`} onClick={() => handleLanguageChange('Turkish')}>Turkish</button>
+            <button className={`language-button g-button ${selectedLanguage === 'French' ? 'selected' : ''}`} onClick={() => handleLanguageChange('French')}>French</button>
+            <button className={`language-button g-button ${selectedLanguage === 'Czech' ? 'selected' : ''}`} onClick={() => handleLanguageChange('Czech')}>Czech</button>
+            <button className={`language-button g-button ${selectedLanguage === 'Turkish' ? 'selected' : ''}`} onClick={() => handleLanguageChange('Turkish')}>Turkish</button>
           </div>
                   <div className="difficulty-selector">
-          <button className={`difficulty-button Beginner ${difficulty === 'Beginner' ? 'selected' : ''}`} onClick={() => handleStartActivity('Beginner')}>
+          <button className={`difficulty-button g-button Beginner ${difficulty === 'Beginner' ? 'selected' : ''}`} onClick={() => handleStartActivity('Beginner')}>
             🐥 Beginner
           </button>
-          <button className={`difficulty-button Learner ${difficulty === 'Learner' ? 'selected' : ''}`} onClick={() => handleStartActivity('Learner')}>
+          <button className={`difficulty-button g-button Learner ${difficulty === 'Learner' ? 'selected' : ''}`} onClick={() => handleStartActivity('Learner')}>
             🦜 Learner
           </button>
-          <button className={`difficulty-button expert ${difficulty === 'Expert' ? 'selected' : ''}`} onClick={() => handleStartActivity('Expert')}>
+          <button className={`difficulty-button g-button expert ${difficulty === 'Expert' ? 'selected' : ''}`} onClick={() => handleStartActivity('Expert')}>
             🦩 Expert
           </button>
         </div>
@@ -302,8 +302,8 @@ const App = () => {
               {message === 'You won!' && (
                 <p>Congratulations! You scored: {score}/{difficulty === 'Beginner' ? 30 : difficulty === 'Learner' ? 65 : 100}</p>
               )}
-              <button onClick={handleRestartGame}>Restart Game</button>
-              <button onClick={handleExitGame}>Exit Game</button>
+              <button className="g-button" onClick={handleRestartGame}>Restart Game</button>
+              <button className="g-button" onClick={handleExitGame}>Exit Game</button>
             </>
           ) : (
             <>
