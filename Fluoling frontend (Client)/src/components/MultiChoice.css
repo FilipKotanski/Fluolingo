@@ -21,47 +21,30 @@
   }
 }
 
-.startActivity-button {
-    margin-right: 10px;
-    padding: 20px 30px;
-    background-color: #ffffff; /* Default background color */
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #333; /* Default text color */
-    font-size: 20px ;
+.g-button {
+  margin-right: 10px;
+  padding: 10px 20px;
+  background-color: #ffffff; /* Default background color */
+  /* border: 1px solid black; */
+  border-radius: 15px;
+  cursor: pointer;
+  color: #333; /* Default text color */
+  font-size: 15px ;
 }
 
-.startActivity-button:hover {
-    background-color: hotpink;
-    border: 1px solid black;
+.g-button:hover {
+  background-color: hotpink;
+    /* border: 1px solid black; */
     color: white;
+}
+
+.language-button.selected {
+  background-color: hotpink; /* Hot pink background color */
+  color: white; /* Dark grey text color */
 }
 
 .language-selector {
-
     margin-bottom: 20px;
-  }
-  
-  .language-button {
-    margin-right: 10px;
-    padding: 10px 20px;
-    background-color: #ffffff; /* Default background color */
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #333; /* Default text color */
-  }
-  
-  .language-button:hover {
-    background-color: hotpink;
-    border: 1px solid black;
-    color: white;
-  }
-
-  .language-button.selected {
-    background-color: hotpink; /* Hot pink background color */
-    color: white; 
   }
 
   :root {
@@ -73,27 +56,17 @@
     font-size: 50px;
   }
 
+  .tagline {
+    padding: 5px 10px;
+    font-size: 20px;
+    margin-bottom: 35px;
+  }
+
   html, body {
     margin: 0;
     padding: 0;
     background-color: var(--background-color)!important;
     font-family: 'Nova Mono', monospace!important;
-  }
-
-  .answer-button {
-    margin-right: 10px;
-    padding: 5px 10px;
-    background-color: #ffffff; /* Default background color */
-    border: 1px solid black;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #333; /* Default text color */
-  }
-  
-  .answer-button:hover {
-    background-color: hotpink;
-    border: 1px solid black;
-    color: white;
   }
 
   .score-container {
@@ -120,21 +93,6 @@
     margin-bottom: 20px;
   }
 
-.language-button {
-  margin-right: 10px;
-  padding: 5px 10px;
-  background-color: #ffffff; /* Default background color */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-  color: #333; /* Default text color */
-}
-
-.language-button.selected {
-  background-color: hotpink; /* Hot pink background color */
-  color: #444; /* Dark grey text color */
-}
-
 .flag-display {
   font-size: 32px;
 }
@@ -148,7 +106,7 @@
   bottom: calc(100% + 5px);
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   padding: 10px;
   border-radius: 5px;
