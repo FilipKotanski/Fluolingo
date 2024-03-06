@@ -17,7 +17,7 @@ body {
 /* Dark mode styles */
 html.dark,
 body.dark {
-  background-color: #333333; /* Dark grey background color */
+  background-color: #4a5568; /* Gray background color */
   color: hotpink;
 }
 

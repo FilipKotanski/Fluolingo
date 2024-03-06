@@ -89,7 +89,7 @@ function Dashboard({ user }) {
     return (
         <div>
             <div className="logo">
-                <img src="../public/flamingo-logo.svg" alt="Logo" />
+                <img src="../public/flamingo-logo.svg" alt="logo" />
             </div>
             {showMessage && <div><h1>Hello {email}. Welcome to Fluolingo!</h1>
                 <p>Select a language game:</p>
