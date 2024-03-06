@@ -27,11 +27,14 @@ function initialise( passport){
                 if(err){
 
 
-                    throw err;
+                    return done(err);
 
                 }
 
-                console.log(results.rows);
+                if (results.rows.length === 0) {
+                    // Email is not registered
+                    return done(null, false, { message: "Email is not registered" });
+                }
 
                 //if the user was found in the database
 
@@ -49,7 +52,7 @@ function initialise( passport){
 
                         if(err){
 
-                            throw err;
+                            return done(err);
 
                         }
 
@@ -125,7 +128,7 @@ function initialise( passport){
 
                 if(err){
 
-                    throw err;
+                    return done(err);
 
                 }
 
