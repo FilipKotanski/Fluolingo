@@ -1,3 +1,3 @@
-const settings =  {baseURL : "https://fluolingo.onrender.com/"};
+const settings =  {baseURL : "https://fluolingo.onrender.com"};
 
 export default settings;
