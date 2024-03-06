@@ -1,6 +1,7 @@
 // External import
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import settings from '../export';
 
 // import Countdown from 'react-countdown';
 
@@ -61,7 +62,7 @@ function ImageGuess() {
 
     useEffect(() => {
         
-        fetch('http://localhost:4000/api/words/english')
+        fetch( settings.baseURL + '/api/words/english')
           .then(response => response.json())
           .then(data => {
             setWords(data);

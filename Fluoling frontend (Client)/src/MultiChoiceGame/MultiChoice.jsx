@@ -5,6 +5,7 @@ import MultipleChoiceAnswers from './MultipleChoiceAnswers';
 //import fetchQuestions from './fetchAnswers';
 import fetchImage from './fetchImage';
 import './MultiChoice.css';
+import settings from '../export';
 
 const languageFlags = {
   French: '🇫🇷',
@@ -43,7 +44,7 @@ const MultiChoice = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/words/`);
+        const response = await fetch(settings.baseURL + `/api/words/`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
