@@ -98,8 +98,12 @@ function ImageGuess() {
     useEffect(() => {
 
         chooseNewWord();
+    }, [startButton, scoreBoard]);
+    
+    useEffect(() => {
 
-    }, [gameWords, words]);
+        showImage();
+    }, [startButton, currentWord]); 
 
 
     useEffect(() => {
@@ -135,7 +139,8 @@ function ImageGuess() {
         setScoreBoard(0);
         setScoreBoardBox('hidden');
 
-        showImage();
+        // chooseNewWord();
+        // showImage();
         startTimer();
         
     };
@@ -154,8 +159,8 @@ function ImageGuess() {
             setCorrectAnswer(correctAnswer);
             console.log(correctAnswer)
 
-        };
-
+        }
+        
     };
 
 
@@ -163,18 +168,25 @@ function ImageGuess() {
 
         // console.log(words);
         // console.log(gameWords);
-        console.log(currentWord);
-        console.log(correctAnswer);
+        // console.log(currentWord);
+        // console.log(correctAnswer);
 
-        const queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${APIkey}&q=${currentWord}&limit=1&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
+        let queryURL = `https://api.giphy.com/v1/gifs/search?api_key=${APIkey}&q=${currentWord}&limit=1&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
 
         fetch(queryURL)
 
         .then((response) => 
             response.json())
-        .then((data) => {
-        setImageURL(data.data[0]['images']['original']['url']);
-        });
+            .then((data) => {
+                if (data.data && data.data.length > 0 && data.data[0].images && data.data[0].images.original && data.data[0].images.original.url) {
+                    setImageURL(data.data[0].images.original.url);
+                } else {
+                    console.error('Invalid Giphy API response:', data);
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching Giphy API:', error);
+            });
 
         createLetterTiles();
         
@@ -200,6 +212,17 @@ function ImageGuess() {
         }, 1000);
 
     };
+    
+
+    const successfulGuess = () => {
+
+        setGameFeedback(correctAnswer + ' is correct!');
+        setScoreBoardBox('visible');
+        setScoreBoard(score => score + 1);
+
+        const updatedTiles = letterTiles.map(tile => ({...tile, isGuessed: true }));
+        setLetterTiles(updatedTiles);
+    }
 
 
     const checkWord = () => {
@@ -212,16 +235,12 @@ function ImageGuess() {
 
         if (newUserAnswer === correctAnswer) {
 
-            setGameFeedback(correctAnswer + ' is correct!');
-            setScoreBoardBox('visible');
-            setScoreBoard(score => score + 1);
+            successfulGuess();
 
-            const updatedTiles = letterTiles.map(tile => ({...tile, isGuessed: true }));
-            setLetterTiles(updatedTiles);
-
+            // chooseNewWord();
+            // showImage();
 
             setTimeout(() => {
-                showImage();
                 setGameFeedback('');
             }, "2000");
 
@@ -321,7 +340,7 @@ function ImageGuess() {
 
                     <div id="playerControl" className={playerControl}>
 
-                        <input id="playerInput" type="type" />
+                        <input id="playerInput" type="text" />
                         <button onClick={checkWord} id="answerSubmit">Enter</button>
 
                     </div>
