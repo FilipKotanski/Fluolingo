@@ -6,6 +6,8 @@ import "./Register.css";
 
 function Register() {
 
+    const baseURL = "https://fluolingo.onrender.com";
+
     // const navigate = useNavigate();
     //  const isAuthenticated = sessionStorage.getItem("isAuthenticated");
     // console.log(isAuthenticated);
@@ -35,7 +37,7 @@ function Register() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:4000/api/users/register', {
+            const response = await fetch( baseURL + '/api/users/register', {
                 method: 'GET',
                 credentials: 'include'
             });
@@ -67,7 +69,7 @@ function Register() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:4000/api/users/register', {
+            const response = await fetch( baseURL + '/api/users/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

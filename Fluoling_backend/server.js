@@ -447,6 +447,8 @@ app.post("/api/users/register", async (req,res) => {
 
 });
 
+app.options('/api/users/login', cors())
+
 app.post(
   "/api/users/login",
   passport.authenticate("local", { session: true }),
