@@ -312,6 +312,8 @@ app.get("/api/words/czech", (req,res) => {
 
 //define register route
 
+app.options('/api/users/register', cors())
+
 app.post("/api/users/register", async (req,res) => {
 
   console.log(req.body);
