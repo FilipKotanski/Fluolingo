@@ -19,7 +19,7 @@ const passport = require("passport");
 const initialisePassport = require("./passportConfig");
 
 const corsOptions = {
-  origin: ['http://localhost:5173/', 'https://fluolingo.netlify.app/'], // Allow requests from your frontend origin
+  origin: true, // Allow requests from your frontend origin
   credentials: true // Allow credentials (cookies, authorization headers, etc.)
 };
 
