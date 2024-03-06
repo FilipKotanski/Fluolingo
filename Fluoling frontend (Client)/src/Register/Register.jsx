@@ -5,6 +5,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Register.css";
 
 function Register() {
+
+    const navigate = useNavigate();
+     const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+    console.log(isAuthenticated);
+
+    useEffect(() => {
+      // Checking if user is not loggedIn
+      if (!isAuthenticated) {
+        navigate("/users/login");
+      } else {
+        navigate("/users/dashboard");
+      }
+    }, [navigate, isAuthenticated]);
+
+
+
+
+
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -12,7 +31,7 @@ function Register() {
         confirmPassword: ''
     });
 
-    const navigate = useNavigate();
+    
 
     const fetchData = async () => {
         try {

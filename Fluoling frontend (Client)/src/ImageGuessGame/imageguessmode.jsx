@@ -14,11 +14,25 @@ function ImageGuessMode() {
     // const [selectedMode, setSelectedMode] = useState(null);
     const [showMessage, setShowMessage] = useState(true);
     const navigate = useNavigate();
+
+    const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+    console.log(isAuthenticated);
+
+    useEffect(() => {
+      // Checking if user is not loggedIn
+      if (!isAuthenticated) {
+        navigate("/users/login");
+      } else {
+        navigate("/image-guess-mode");
+      }
+    }, [navigate, isAuthenticated]);
   
     // const handleGameMode = (mode) => {
     //   setSelectedMode(mode);
     //   setShowMessage(false); // Hide the message after game selection
     // };
+
+
 
     const handleGameMode = (mode) => {
         // setSelectedMode(mode);
@@ -40,7 +54,7 @@ function ImageGuessMode() {
 
         <div className="gameMain">
 
-            {showMessage && 
+            {/* {showMessage &&  */}
             
             <div>
                 <h1>Let the games begin...</h1>
@@ -51,7 +65,9 @@ function ImageGuessMode() {
                     <button onClick={() => handleGameMode('Two Player')} className="mt-5" >Two Player</button>
                     <button onClick={handleExit} className="mt-5">Exit Game</button>
                 </div>
-            </div>}
+            </div>
+            
+            {/* } */}
 
             {/* {selectedMode === 'Single Player' && <ImageGuess />}
             {selectedMode === 'Two Player' && <ImageGuess2p />} */}

@@ -22,6 +22,20 @@ function ImageGuess2p() {
 
 
     const navigate = useNavigate();
+
+    const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+    console.log(isAuthenticated);
+
+    useEffect(() => {
+      // Checking if user is not loggedIn
+      if (!isAuthenticated) {
+        navigate("/users/login");
+      } else {
+        navigate("/image-guess-2p");
+      }
+    }, [navigate, isAuthenticated]);
+
+
     const [currentWord, setCurrentWord] = useState('');
     const [imageURL, setImageURL] = useState('');
     const [playerControl, setPlayerControl] = useState('hidden');

@@ -7,8 +7,9 @@ import { Card, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
 import ImageGuessMode from '../ImageGuessGame/imageguessmode';
+import { useAuthentication } from '../Authentication/AuthenticationContext';
 
-function Dashboard({ user }) {
+function Dashboard() {
     const [selectedGame, setSelectedGame] = useState(null);
     const [showMessage, setShowMessage] = useState(true);
     const location = useLocation();
@@ -16,51 +17,34 @@ function Dashboard({ user }) {
     const userName = state?.userName;
     const [count, setCount] = useState(0);
     const { email } = useParams();
+    const { logout, getUserData } = useAuthentication();
     const navigate = useNavigate();
+    const [name, setName] = useState(null);
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch('http://localhost:4000/api/users/dashboard', {
-                method: 'GET',
-                credentials: 'include'
-            });
-
-            if (!response.ok) {
-                if (response.status === 401) {
-                    window.location.href = '/users/login';
-                } else {
-                    throw new Error('Failed to fetch user data');
-                }
-            } else {
-                const responseData = await response.json();
-                // const redirectUrl = responseData.redirect;
-                // const userEmail = responseData.userEmail;
-                // const url = responseData.url;
-
-                // console.log(url);
-                // console.log(userEmail);
-                // console.log(email);
-
-                // const urlSegments = redirectUrl.split('/');
-
-                // console.log(urlSegments.length)
-
-                // if (email !== userEmail) {
-                //     setCount(count + 1);
-                //     window.location.href = redirectUrl;
-                // }
-
-              navigate("/users/dashboard");
-
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
+    // console.log(user);
+    
+    const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+    console.log(isAuthenticated);
 
     useEffect(() => {
-        fetchData();
-    }, []);
+      // Define an async function inside useEffect
+      const fetchData = async () => {
+        // Checking if user is not loggedIn
+        if (!isAuthenticated) {
+          navigate("/users/login");
+        } else {
+          navigate("/users/dashboard");
+          
+          const name = await getUserData();
+
+          setName(name);
+
+        }
+      };
+    
+      // Call the async function
+      fetchData();
+    }, [navigate, isAuthenticated]);
 
     // const handleGameSelection = (game) => {
     //     setSelectedGame(game);
@@ -78,35 +62,24 @@ function Dashboard({ user }) {
 
 
 
-    const handleLogout = async () => {
-        try {
-            const response = await fetch('http://localhost:4000/api/users/logout', {
-                method: 'POST',
-                credentials: 'include'
-            });
+  const handleLogout = async () => {
+    await logout();
+    // Redirect to the login page or any other page after logout
+    navigate('/users/login');
+  };
 
-            if (!response.ok) {
-                throw new Error('Failed to logout');
-            }
+  
 
-            const responseData = await response.json();
+    
 
-            if (responseData.success) {
-                window.location.href = responseData.redirect;
-            } else {
-                console.error('Failed to logout');
-            }
-        } catch (error) {
-            console.error('Error during logout:', error);
-        }
-    };
+  
 
     return (
         <div>
             <div className="logo">
                 <img src="/flamingo-logo.svg" alt="Logo" />
             </div>
-            {showMessage && <div><h1>Hello {email}. Welcome to Fluolingo!</h1>
+            {showMessage && <div><h1>Hello {name}. Welcome to Fluolingo!</h1>
                 <p>Select a language game:</p>
                 <div>
                     <button className="g-button" onClick={() => handleGameSelection('Image Guess')}>Image Guess</button>

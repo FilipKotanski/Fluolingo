@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-
+import { useAuthentication } from '../Authentication/AuthenticationContext';
 
 import { Form, Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,90 +11,44 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Login.css";
 
 function Login() {
+
+  const navigate = useNavigate();
+  const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+    console.log(isAuthenticated);
+
+    useEffect(() => {
+      // Checking if user is not loggedIn
+      if (!isAuthenticated) {
+        navigate("/users/login");
+      } else {
+        navigate("/users/dashboard");
+      }
+    }, [navigate, isAuthenticated]);
+
+
+
+  const { login, errorMessage } = useAuthentication();
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-
-  const [errorMessage, setErrorMessage] = useState('');
-
+  
   const location = useLocation();
-
-  const {state} = location;
-
-  const navigate = useNavigate();
-
-
-  const fetchData = async () => {
-    try {
-      const response = await fetch('http://localhost:4000/api/users/login', {
-        method: 'GET',
-        credentials: 'include' // Include cookies in the request
-      });
-
-      
-
-      if (response.ok) {
-        // User is authenticated, redirect to dashboard
-        const responseData = await response.json(); // Parse the response body as JSON
-        const redirectUrl = responseData.redirect; // Access the redirect property
-
-        window.location.href = redirectUrl;
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []); // Call the fetchData function only once when the component mounts
-
-
+  const { state } = location;
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-    setErrorMessage(''); // Clear any previous error message when user starts typ
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    try {
-      const response = await fetch('http://localhost:4000/api/users/login', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      });
-  
-      if (!response.ok) {
-        // Handle unauthorized access
-        if (response.status === 401) {
-            setErrorMessage("Unauthorized access");
-        } else {
-            throw new Error('Failed to login');
-        }
-    } else {
-        // Successful authentication, parse response body
-        const responseData = await response.json();
-        if (responseData.success) {
-            // Redirect to dashboard
-            window.location.href = responseData.redirect;
-        } else {
-            // Display error message
-            setErrorMessage(responseData.message);
-        }
-    }
-} catch (error) {
-    console.error('Error during login:', error);
-     
-    }
+    await login(formData); // Call login function from context
+    // Redirect to dashboard if login successful
+    // You can replace "/dashboard" with the appropriate path
+    navigate('/users/dashboard');
   };
 
 

@@ -101,17 +101,46 @@ app.get("/api/users/login", checkAuthenticated, (req, res) => {
   res.status(401).json({ message: "Unauthorized" });
 });
 
-app.get("/api/users/dashboard", checkAuthenticated, (req, res) => {
-  // User is authenticated, send JSON response with success message and user data
-  //res.status(200).json({ success: true, user: req.user });
+app.get("/api/users/dashboard", checkAuthenticated, async (req, res) => {
+  
 
-  const userEmail = req.body.email; // Extract email from request body
-  const redirectUrl = `http://localhost:5173/users/dashboard/${encodeURIComponent(userEmail)}`;
-  //const redirectUrl = "http://localhost:5173/users/dashboard/"
+    // Send JSON response with the user data
+    res.status(200).json({ success: true});
+  
+});
 
-  res.status(200).json({ success: true, redirect: redirectUrl });
+app.post("/api/users/userData", async (req, res) => {
+  try {
+    // Extract email from query parameters or route parameters
+    const userEmail = req.body.email;
 
+    //console.log(req);
+    console.log(req.body);
 
+    // Check if userEmail is provided and handle the case if it's missing
+    if (!userEmail) {
+      return res.status(400).json({ success: false, error: 'Email is required' });
+    }
+
+    // Execute SQL query to retrieve user from the database
+    const userQueryResult = await pool.query('SELECT * FROM users WHERE email = $1', ["filip.kotanski@gmail.com"]);
+
+    // Check if the user exists in the database
+    if (userQueryResult.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+
+    // Extract the user from the result object
+    const user = userQueryResult.rows[0];
+
+    console.log(user);
+
+    // Send JSON response with the user data
+    res.status(200).json({ success: true, user: user });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ success: false, error: 'Failed to retrieve user data' });
+  }
 });
 
 app.post("/api/users/logout", (req, res) => {
@@ -425,10 +454,11 @@ app.post(
     // Successful authentication, send JSON response with success message
 
     const userEmail = req.body.email; // Extract email from request body
+    console.log(userEmail);
     const redirectUrl = `http://localhost:5173/users/dashboard/${encodeURIComponent(userEmail)}`;
     //const redirectUrl = "http://localhost:5173/users/dashboard/"
 
-    res.json({ success: true, redirect: redirectUrl });
+    res.json({ success: true, email: userEmail });
   },
   (err, req, res, next) => {
     // Failed authentication, send JSON response with error message
@@ -436,7 +466,8 @@ app.post(
   }
 );
 
-//checking if user is authenticated to redirect them to the dashboard
+
+
 
 function checkAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {

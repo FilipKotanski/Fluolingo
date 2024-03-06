@@ -28,6 +28,18 @@ const MultiChoice = () => {
   const [words, setWords] = useState([]);
   const navigate = useNavigate();
 
+  const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+    console.log(isAuthenticated);
+
+    useEffect(() => {
+      // Checking if user is not loggedIn
+      if (!isAuthenticated) {
+        navigate("/users/login");
+      } else {
+        navigate("/multi-choice");
+      }
+    }, [navigate, isAuthenticated]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -267,9 +279,9 @@ const MultiChoice = () => {
         <div>
           <img src="../public/flamingo-logo.svg" alt="Fluolingo Logo" className="logo" />
           <h1 className="heading">Fluolingo</h1>
-          <h2 className="tagline">Fly through the MultiChoice quiz</h2>
-          <button className="start-button" onClick={() => handleStartActivity('Beginner')}>Get Ready to Soar!</button>
-          <button className="start-button" onClick={() => handleExit()}>Exit</button>
+          <h3 className="tagline">Fly through the MultiChoice quiz</h3>
+          <button onClick={() => handleStartActivity('Beginner')}>Get Ready to Soar!</button>
+          <button onClick={() => handleExit()}>Exit</button>
 
         </div>
       ) : (
@@ -308,8 +320,8 @@ const MultiChoice = () => {
             </>
           ) : (
             <>
-              <ImageDisplay imageUrl={image} size="800px" />
-              <MultipleChoiceAnswers answers={answers} handleAnswerClick={handleAnswerClick} />
+              <ImageDisplay imageUrl={image} size="400px" />
+              <MultipleChoiceAnswers className="answer-button" answers={answers} handleAnswerClick={handleAnswerClick} />
               <div className="score-container">
                 Score: {score} / {difficulty === 'Beginner' ? 30 : difficulty === 'Learner' ? 65 : 100}
               </div>
