@@ -98,11 +98,13 @@ function ImageGuess() {
     useEffect(() => {
 
         chooseNewWord();
+
     }, [startButton, scoreBoard]);
     
     useEffect(() => {
 
         showImage();
+
     }, [startButton, currentWord]); 
 
 
@@ -138,9 +140,6 @@ function ImageGuess() {
         setTimer(60);
         setScoreBoard(0);
         setScoreBoardBox('hidden');
-
-        // chooseNewWord();
-        // showImage();
         startTimer();
         
     };
@@ -212,11 +211,64 @@ function ImageGuess() {
         }, 1000);
 
     };
+
+
+    const speakAnswer = (language, answer) => {
+        const languageCode = getLanguageCode(language);
+        const voiceName = getVoiceForLanguage(language);
     
+        if (!languageCode || !voiceName) {
+          console.error('Unsupported language:', language);
+          return;
+        }
+    
+        const utterance = new SpeechSynthesisUtterance(answer.toLowerCase());
+        utterance.lang = languageCode;
+        utterance.voice = getVoiceByName(voiceName);
+    
+        try {
+          window.speechSynthesis.speak(utterance);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+    };
+
+    const getLanguageCode = (language) => {
+        switch (language) {
+          case 'czech':
+            return 'cs-CZ';
+          case 'french':
+            return 'fr-FR';
+          case 'turkish':
+            return 'tr-TR';
+          default:
+            return null;
+        }
+    };
+    
+    const getVoiceForLanguage = (language) => {
+        switch (language) {
+          case 'czech':
+            return 'Josef';
+          case 'french':
+            return 'Bette';
+          case 'turkish':
+            return 'Omer';
+          default:
+            return null;
+        }
+    };
+    
+    const getVoiceByName = (name) => {
+        const voices = window.speechSynthesis.getVoices();
+        return voices.find(voice => voice.name === name);
+    };
+
 
     const successfulGuess = () => {
 
         setGameFeedback(correctAnswer + ' is correct!');
+        speakAnswer(selectedLanguage, correctAnswer);
         setScoreBoardBox('visible');
         setScoreBoard(score => score + 1);
 
