@@ -1,3 +1,4 @@
+/* Import Google Font */
 @import url("https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap");
 
 :root {
@@ -13,6 +14,7 @@ body {
   font-family: "Nova Mono", monospace;
 }
 
+/* Logo */
 .logo {
   width: 100px;
   height: 100px;
@@ -21,11 +23,13 @@ body {
   text-align: center; /* Center align the logo within its container */
 }
 
+/* Heading */
 .heading {
   padding: 30px 40px;
   font-size: 50px;
 }
 
+/* Card */
 .card {
   background-color: #a4b494;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -50,6 +54,10 @@ body {
 .dark .g-button {
   background-color: black;
   border: 1px solid white;
+}
+
+.dark .g-button,
+.dark .g-button:hover {
   color: hotpink;
 }
 
@@ -76,12 +84,7 @@ body {
   font-size: 20px;
 }
 
-.g-button:hover {
-  background-color: hotpink;
-  border: 1px solid black;
-  color: white;
-}
-
+.g-button:hover,
 .g-button:selected {
   background-color: hotpink; /* Hot pink background color */
   color: white;

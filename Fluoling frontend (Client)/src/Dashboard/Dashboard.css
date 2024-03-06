@@ -1,3 +1,4 @@
+/* Import Google Font */
 @import url("https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap");
 
 :root {
@@ -57,17 +58,13 @@ body {
   font-size: 20px;
 }
 
-.g-button:hover {
-  background-color: hotpink;
-  border: 1px solid black;
-  color: white;
-}
-
+.g-button:hover,
 .g-button:selected {
   background-color: hotpink; /* Hot pink background color */
   color: white;
 }
 
+/* Center the content */
 #root {
   max-width: 1280px;
   margin: 0 auto;
