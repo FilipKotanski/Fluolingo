@@ -25,11 +25,6 @@ body.dark {
   color: hotpink; /* Pink text color */
 }
 
-.dark .logo,
-.dark .g-button {
-  color: hotpink; /* Change text color to hot pink */
-}
-
 .dark .g-button {
   margin-right: 10px;
   padding: 20px 30px;
@@ -49,6 +44,11 @@ body.dark {
 .dark .g-button:selected {
   background-color: hotpink; /* Hot pink background color */
   color: white;
+}
+
+/* Invert SVG color when dark mode is on */
+.dark .logo {
+  filter: invert(1); /* Invert the color of the SVG */
 }
 
 /* Center the content */
