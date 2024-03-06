@@ -18,11 +18,14 @@ const passport = require("passport");
 
 const initialisePassport = require("./passportConfig");
 
-app.use(cors({
+const corsOptions = {
   origin: ['http://localhost:5173/', 'https://fluolingo.netlify.app/'], // Allow requests from your frontend origin
   credentials: true // Allow credentials (cookies, authorization headers, etc.)
-}));
+};
 
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 //necessary to maintain authentication across multiple requests
 
 initialisePassport(passport);
@@ -312,7 +315,7 @@ app.get("/api/words/czech", (req,res) => {
 
 //define register route
 
-app.options('/api/users/register', cors())
+
 
 app.post("/api/users/register", async (req,res) => {
 
@@ -449,7 +452,7 @@ app.post("/api/users/register", async (req,res) => {
 
 });
 
-app.options('/api/users/login', cors())
+
 
 app.post(
   "/api/users/login",
