@@ -6,18 +6,18 @@ import "./Register.css";
 
 function Register() {
 
-    const navigate = useNavigate();
-     const isAuthenticated = sessionStorage.getItem("isAuthenticated");
-    console.log(isAuthenticated);
+    // const navigate = useNavigate();
+    //  const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+    // console.log(isAuthenticated);
 
-    useEffect(() => {
-      // Checking if user is not loggedIn
-      if (!isAuthenticated) {
-        navigate("/users/login");
-      } else {
-        navigate("/users/dashboard");
-      }
-    }, [navigate, isAuthenticated]);
+    // useEffect(() => {
+    //   // Checking if user is not loggedIn
+    //   if (!isAuthenticated) {
+    //     navigate("/users/login");
+    //   } else {
+    //     navigate("/users/dashboard");
+    //   }
+    // }, [navigate, isAuthenticated]);
 
 
 

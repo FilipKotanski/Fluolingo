@@ -1,0 +1,10 @@
+[build]
+  # Build settings for the frontend
+  command = "cd Fluolingo frontend (Client) && npm install && npm run build"  # Build command for the frontend
+  publish = "Fluolingo frontend (Client)/build"  # Directory to deploy for the frontend
+
+[[redirects]]
+  # Redirect API requests to the backend during development
+  from = "/api/*"
+  to = "https://your-backend-netlify-app.netlify.app/api/:splat"
+  status = 200

@@ -19,7 +19,7 @@ const passport = require("passport");
 const initialisePassport = require("./passportConfig");
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from your frontend origin
+  origin: '*', // Allow requests from your frontend origin
   credentials: true // Allow credentials (cookies, authorization headers, etc.)
 }));
 

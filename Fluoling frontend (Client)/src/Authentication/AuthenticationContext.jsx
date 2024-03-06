@@ -23,7 +23,7 @@ export const AuthenticationProvider = ({ children }) => {
 
   const login = async (formData) => {
     try {
-      const response = await fetch('http://localhost:4000/api/users/login', {
+      const response = await fetch('/api/users/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -68,7 +68,7 @@ export const AuthenticationProvider = ({ children }) => {
           const body = JSON.stringify({ email: email });
 
 
-          const response = await fetch('http://localhost:4000/api/users/userData',
+          const response = await fetch('/api/users/userData',
           
           {
 
@@ -113,7 +113,7 @@ export const AuthenticationProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/users/logout', {
+      const response = await fetch('/api/users/logout', {
         method: 'POST',
         credentials: 'include'
       });

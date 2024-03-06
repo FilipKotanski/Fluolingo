@@ -79,7 +79,7 @@ function Dashboard() {
             <div className="logo">
                 <img src="/flamingo-logo.svg" alt="Logo" />
             </div>
-            {showMessage && <div><h1>Hello {name}. Welcome to Fluolingo!</h1>
+            {showMessage && <div><h1> Welcome to Fluolingo!</h1>
                 <p>Select a language game:</p>
                 <div>
                     <button className="g-button" onClick={() => handleGameSelection('Image Guess')}>Image Guess</button>
