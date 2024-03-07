@@ -6,7 +6,7 @@ import MultipleChoiceAnswers from './MultipleChoiceAnswers';
 import fetchImage from './fetchImage';
 import './MultiChoice.css';
 import settings from '../export';
-import Img from "./flamingo-logo.svg";
+import Img from "/public/flamingo-logo.svg";
 
 const languageFlags = {
   French: '🇫🇷',

@@ -8,7 +8,7 @@ import settings from '../export';
 // Local import
 import './imageguess.css'
 import LetterTile from './lettertiles';
-import Img from "./flamingo-logo.svg";
+import Img from "/public/flamingo-logo.svg";
 
 //import enWordArr from '../words(en)';
 

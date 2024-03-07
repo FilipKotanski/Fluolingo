@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
 import ImageGuessMode from '../ImageGuessGame/imageguessmode';
 import { useAuthentication } from '../Authentication/AuthenticationContext';
-import Img from "./flamingo-logo.svg";
+import Img from "/public/flamingo-logo.svg";
 
 function Dashboard() {
     const [selectedGame, setSelectedGame] = useState(null);
