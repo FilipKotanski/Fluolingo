@@ -14,6 +14,7 @@ import Img from "../../public/flamingo-logo.svg";
 function Login() {
 
   const [renderDelayedContent, setRenderDelayedContent] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   useEffect(() => {
     // Delay rendering of content for 1 second
@@ -66,7 +67,13 @@ function Login() {
     navigate('/users/dashboard');
   };
 
-  const success = sessionStorage.getItem("success");
+  useEffect(() => {
+    const success = sessionStorage.getItem("success");
+    if (success) {
+      setShowSuccessMessage(true);
+      sessionStorage.removeItem("success"); // Remove success message from session storage
+    }
+  }, []);
 
   
   return (
@@ -82,11 +89,13 @@ function Login() {
       
       </div>
       <h1 className="heading">Fluolingo</h1>
-      { renderDelayedContent && success &&(
+      { renderDelayedContent && showSuccessMessage &&(
         <div className="success-message">
           <p>Successful registration. Please log in now.</p>
         </div>
-      )}
+      )
+      
+      }
 
       <Card className="rounded p-3">
         <h2>Welcome!</h2>
