@@ -10,17 +10,17 @@ function Register() {
     const baseURL = "https://fluolingo.onrender.com";
 
     const navigate = useNavigate();
-    //  const isAuthenticated = sessionStorage.getItem("isAuthenticated");
-    // console.log(isAuthenticated);
+    const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+    console.log(isAuthenticated);
 
-    // useEffect(() => {
-    //   // Checking if user is not loggedIn
-    //   if (!isAuthenticated) {
-    //     navigate("/users/login");
-    //   } else {
-    //     navigate("/users/dashboard");
-    //   }
-    // }, [navigate, isAuthenticated]);
+    useEffect(() => {
+      // Checking if user is not loggedIn
+      if (isAuthenticated) {
+        navigate("/users/dashboard");
+      } else {
+        navigate("/users/register");
+      }
+    }, [navigate, isAuthenticated]);
 
 
 
@@ -36,26 +36,26 @@ function Register() {
 
     
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch( baseURL + '/api/users/register', {
-                method: 'GET',
-                credentials: 'include'
-            });
+    // const fetchData = async () => {
+    //     try {
+    //         const response = await fetch( baseURL + '/api/users/register', {
+    //             method: 'GET',
+    //             credentials: 'include'
+    //         });
 
-            if (response.ok) {
-                const responseData = await response.json();
-                const redirectUrl = responseData.redirect;
-                window.location.href = redirectUrl;
-            }
-        } catch (error) {
-            console.error('Error:', error);
-        }
-    };
+    //         if (response.ok) {
+    //             const responseData = await response.json();
+    //             const redirectUrl = responseData.redirect;
+    //             window.location.href = redirectUrl;
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
 
     const [errors, setErrors] = useState([]);
 
@@ -83,6 +83,8 @@ function Register() {
                 setErrors(errorData.errors);
             } else {
                 navigate("/users/login", { state: { successMessage: true } });
+
+                sessionStorage.setItem("success", true);
             }
         } catch (error) {
             console.error('Error during registration:', error);

@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './imageguess.css'
 import ImageGuess from './imageguess';
 import ImageGuess2p from './imageguess2p';
+import Img from "/public/flamingo-logo.svg";
 
 
 function ImageGuessMode() {
@@ -55,6 +56,7 @@ function ImageGuessMode() {
         <div className="gameMain">
 
             {/* {showMessage &&  */}
+            <img src={Img} alt="Fluolingo Logo" className="logo" />
             
             <div>
                 <h1>Let the games begin...</h1>

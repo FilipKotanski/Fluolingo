@@ -131,6 +131,7 @@ export const AuthenticationProvider = ({ children }) => {
         sessionStorage.setItem("isAuthenticated", "false");
         sessionStorage.removeItem("isAuthenticated");
         sessionStorage.removeItem("email");
+        sessionStorage.removeItem("success");
 
         
       } else {

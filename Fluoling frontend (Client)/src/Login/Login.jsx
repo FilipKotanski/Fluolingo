@@ -13,6 +13,20 @@ import Img from "../../public/flamingo-logo.svg";
 
 function Login() {
 
+  const [renderDelayedContent, setRenderDelayedContent] = useState(false);
+
+  useEffect(() => {
+    // Delay rendering of content for 1 second
+    const timeoutId = setTimeout(() => {
+      setRenderDelayedContent(true);
+    }, 250);
+
+    // Clean up the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []); // Empty dependency array ensures useEffect runs only once
+
+
+
   const navigate = useNavigate();
   const isAuthenticated = sessionStorage.getItem("isAuthenticated");
     console.log(isAuthenticated);
@@ -52,21 +66,28 @@ function Login() {
     navigate('/users/dashboard');
   };
 
+  const success = sessionStorage.getItem("success");
 
+  
   return (
     <div>
       <div className="logo">
         <img src={Img} alt="logo" />
 
-      {state && state.successMessage && (
-        <div className="success-message">
-          <p>Successful registration. Please log in now.</p>
-        </div>
-      )}
+      {/* state?.successMessage && */}
+
+
+      
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       
       </div>
       <h1 className="heading">Fluolingo</h1>
+      { renderDelayedContent && success &&(
+        <div className="success-message">
+          <p>Successful registration. Please log in now.</p>
+        </div>
+      )}
+
       <Card className="rounded p-3">
         <h2>Welcome!</h2>
         <Form onSubmit={handleSubmit}>
