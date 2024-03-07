@@ -9,7 +9,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./Login.css";
-import Img from "../../public/fluolingo-logo.svg";
+import Img from "../../public/flamingo-logo.svg";
 
 function Login() {
 
