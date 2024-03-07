@@ -10,6 +10,7 @@ import './imageguess.css'
 import LetterTile from './lettertiles';
 import Img from "/public/flamingo-logo.svg";
 
+
 //import enWordArr from '../words(en)';
 
 
@@ -81,7 +82,7 @@ function ImageGuess() {
 
     useEffect(() => {
         
-        fetch('http://localhost:4000/api/words/french')
+        fetch( settings.baseURL + '/api/words/french')
           .then(response => response.json())
           .then(data => {
             setFrenchWords(data);
@@ -93,7 +94,7 @@ function ImageGuess() {
 
     useEffect(() => {
         
-        fetch('http://localhost:4000/api/words/czech')
+        fetch( settings.baseURL + '/api/words/czech')
           .then(response => response.json())
           .then(data => {
             setCzechWords(data);
@@ -105,7 +106,7 @@ function ImageGuess() {
 
     useEffect(() => {
         
-        fetch('http://localhost:4000/api/words/turkish')
+        fetch( settings.baseURL + '/api/words/turkish')
           .then(response => response.json())
           .then(data => {
             setTurkishWords(data);
