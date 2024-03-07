@@ -5,7 +5,9 @@ import { Link , useNavigate } from 'react-router-dom';
 
 // Local import
 import './imageguess.css'
-import LetterTile from './lettertiles'; 
+import LetterTile from './lettertiles';
+
+import settings from '../export';
 
 //import enWordArr from '../words(en)';
 
@@ -69,7 +71,7 @@ function ImageGuess2p() {
 
     useEffect(() => {
         
-        fetch('http://localhost:4000/api/words/english')
+        fetch(settings.baseURL + '/api/words/english')
           .then(response => response.json())
           .then(data => {
             setWords(data);

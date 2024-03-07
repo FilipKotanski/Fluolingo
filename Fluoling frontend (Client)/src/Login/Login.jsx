@@ -9,8 +9,24 @@ import { Form, Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./Login.css";
+import Img from "../../public/flamingo-logo.svg";
 
 function Login() {
+
+  const [renderDelayedContent, setRenderDelayedContent] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  useEffect(() => {
+    // Delay rendering of content for 1 second
+    const timeoutId = setTimeout(() => {
+      setRenderDelayedContent(true);
+    }, 250);
+
+    // Clean up the timeout to avoid memory leaks
+    return () => clearTimeout(timeoutId);
+  }, []); // Empty dependency array ensures useEffect runs only once
+
+
 
   const navigate = useNavigate();
   const isAuthenticated = sessionStorage.getItem("isAuthenticated");
@@ -51,21 +67,36 @@ function Login() {
     navigate('/users/dashboard');
   };
 
+  useEffect(() => {
+    const success = sessionStorage.getItem("success");
+    if (success) {
+      setShowSuccessMessage(true);
+      sessionStorage.removeItem("success"); // Remove success message from session storage
+    }
+  }, []);
 
+  
   return (
     <div>
       <div className="logo">
-        <img src="../public/flamingo-logo.svg" alt="logo" />
+        <img src={Img} alt="logo" />
 
-      {state && state.successMessage && (
-        <div className="success-message">
-          <p>Successful registration. Please log in now.</p>
-        </div>
-      )}
+      {/* state?.successMessage && */}
+
+
+      
       {errorMessage && <div className="error-message">{errorMessage}</div>}
       
       </div>
       <h1 className="heading">Fluolingo</h1>
+      { renderDelayedContent && showSuccessMessage &&(
+        <div className="success-message">
+          <p>Successful registration. Please log in now.</p>
+        </div>
+      )
+      
+      }
+
       <Card className="rounded p-3">
         <h2>Welcome!</h2>
         <Form onSubmit={handleSubmit}>

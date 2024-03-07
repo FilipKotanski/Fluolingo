@@ -5,6 +5,8 @@ import MultipleChoiceAnswers from './MultipleChoiceAnswers';
 //import fetchQuestions from './fetchAnswers';
 import fetchImage from './fetchImage';
 import './MultiChoice.css';
+import settings from '../export';
+import Img from "/public/flamingo-logo.svg";
 
 const languageFlags = {
   French: '🇫🇷',
@@ -43,7 +45,7 @@ const MultiChoice = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/api/words/`);
+        const response = await fetch(settings.baseURL + `/api/words/`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -277,7 +279,7 @@ const MultiChoice = () => {
     <div className="app-container">
       {!activityStarted ? (
         <div>
-          <img src="../public/flamingo-logo.svg" alt="Fluolingo Logo" className="logo" />
+          <img src={Img} alt="Fluolingo Logo" className="logo" />
           <h1 className="heading">Fluolingo</h1>
           <h3 className="tagline">Fly through the MultiChoice quiz</h3>
           <button onClick={() => handleStartActivity('Beginner')}>Get Ready to Soar!</button>

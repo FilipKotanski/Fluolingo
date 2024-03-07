@@ -11,6 +11,7 @@ export const AuthenticationProvider = ({ children }) => {
   const [email, setEmail] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const baseURL = "https://fluolingo.onrender.com";
 
    // Check for authentication status on component mount
   // useEffect(() => {
@@ -23,7 +24,7 @@ export const AuthenticationProvider = ({ children }) => {
 
   const login = async (formData) => {
     try {
-      const response = await fetch('http://localhost:4000/api/users/login', {
+      const response = await fetch(baseURL + '/api/users/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -68,7 +69,7 @@ export const AuthenticationProvider = ({ children }) => {
           const body = JSON.stringify({ email: email });
 
 
-          const response = await fetch('http://localhost:4000/api/users/userData',
+          const response = await fetch(baseURL + '/api/users/userData',
           
           {
 
@@ -113,7 +114,7 @@ export const AuthenticationProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/users/logout', {
+      const response = await fetch(baseURL + '/api/users/logout', {
         method: 'POST',
         credentials: 'include'
       });
@@ -130,6 +131,7 @@ export const AuthenticationProvider = ({ children }) => {
         sessionStorage.setItem("isAuthenticated", "false");
         sessionStorage.removeItem("isAuthenticated");
         sessionStorage.removeItem("email");
+        sessionStorage.removeItem("success");
 
         
       } else {

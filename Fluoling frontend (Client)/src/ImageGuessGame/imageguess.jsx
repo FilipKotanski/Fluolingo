@@ -1,12 +1,14 @@
 // External import
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import settings from '../export';
 
 // import Countdown from 'react-countdown';
 
 // Local import
 import './imageguess.css'
-import LetterTile from './lettertiles'; 
+import LetterTile from './lettertiles';
+import Img from "/public/flamingo-logo.svg";
 
 //import enWordArr from '../words(en)';
 
@@ -67,7 +69,7 @@ function ImageGuess() {
 
     useEffect(() => {
         
-        fetch('http://localhost:4000/api/words/english')
+        fetch( settings.baseURL + '/api/words/english')
           .then(response => response.json())
           .then(data => {
             setWords(data);
@@ -370,7 +372,7 @@ function ImageGuess() {
 
         <div className="gameMain">
 
-            <img src="../public/flamingo-logo.svg" alt="Fluolingo Logo" className="logo mb-5" />
+            <img src={Img} alt="Fluolingo Logo" className="logo mb-5" />
             {/* <h1 className="heading">Fluolingo</h1> */}
 
             <div className="mb-5">

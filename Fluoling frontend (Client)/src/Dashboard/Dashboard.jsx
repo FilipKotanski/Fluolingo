@@ -8,6 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
 import ImageGuessMode from '../ImageGuessGame/imageguessmode';
 import { useAuthentication } from '../Authentication/AuthenticationContext';
+import Img from "/public/flamingo-logo.svg";
 
 function Dashboard() {
     const [selectedGame, setSelectedGame] = useState(null);
@@ -77,7 +78,7 @@ function Dashboard() {
     return (
         <div>
             <div className="logo">
-                <img src="/flamingo-logo.svg" alt="Logo" />
+                <img src={Img} alt="Logo" />
             </div>
             {showMessage && <div><h1>Hello {user?.name}. Welcome to Fluolingo!</h1>
                 <p>Select a language game:</p>

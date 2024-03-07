@@ -18,11 +18,14 @@ const passport = require("passport");
 
 const initialisePassport = require("./passportConfig");
 
-app.use(cors({
-  origin: 'http://localhost:5173', // Allow requests from your frontend origin
+const corsOptions = {
+  origin: true, // Allow requests from your frontend origin
   credentials: true // Allow credentials (cookies, authorization headers, etc.)
-}));
+};
 
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 //necessary to maintain authentication across multiple requests
 
 initialisePassport(passport);
@@ -312,6 +315,8 @@ app.get("/api/words/czech", (req,res) => {
 
 //define register route
 
+
+
 app.post("/api/users/register", async (req,res) => {
 
   console.log(req.body);
@@ -446,6 +451,8 @@ app.post("/api/users/register", async (req,res) => {
   }
 
 });
+
+
 
 app.post(
   "/api/users/login",
