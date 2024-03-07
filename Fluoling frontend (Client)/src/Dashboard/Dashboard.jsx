@@ -36,6 +36,8 @@ function Dashboard() {
         } else {
           navigate("/users/dashboard");
           
+          
+          
           const userObj = await getUserData();
 
           setUser(userObj);
