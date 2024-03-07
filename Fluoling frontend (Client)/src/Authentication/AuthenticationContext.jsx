@@ -97,9 +97,9 @@ export const AuthenticationProvider = ({ children }) => {
 
           const responseData = await response.json();
 
-          console.log(responseData.user.name);
-          //sessionStorage.setItem("user",JSON.stringify(responseData.user));
-          return responseData.user.name;
+          //console.log(responseData.user.name);
+          sessionStorage.setItem("user",JSON.stringify(responseData.user));
+          return responseData.user;
 
       }
 
