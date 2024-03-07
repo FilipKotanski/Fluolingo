@@ -9,6 +9,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import "./Login.css";
+import Img from "../../public/fluolingo-logo.svg";
 
 function Login() {
 
@@ -55,7 +56,7 @@ function Login() {
   return (
     <div>
       <div className="logo">
-        <img src="../public/flamingo-logo.svg" alt="logo" />
+        <img src={Img} alt="logo" />
 
       {state && state.successMessage && (
         <div className="success-message">

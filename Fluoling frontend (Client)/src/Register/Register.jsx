@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Card, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Register.css";
+import Img from "../../public/flamingo-logo.svg";
 
 function Register() {
 
@@ -91,7 +92,7 @@ function Register() {
     return (
         <div>
             <div className="logo">
-            <img src="../public/flamingo-logo.svg" alt="Logo" />
+            <img src={Img} alt="Logo" />
             </div>
             <h1 className="heading">Fluolingo</h1>
             {errors.length > 0 && (

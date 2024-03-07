@@ -7,7 +7,8 @@ import settings from '../export';
 
 // Local import
 import './imageguess.css'
-import LetterTile from './lettertiles'; 
+import LetterTile from './lettertiles';
+import Img from "../../public/flamingo-logo.svg";
 
 //import enWordArr from '../words(en)';
 
@@ -255,7 +256,7 @@ function ImageGuess() {
 
         <div className="gameMain">
 
-            <img src="../public/flamingo-logo.svg" alt="Fluolingo Logo" className="logo mb-5" />
+            <img src={Img} alt="Fluolingo Logo" className="logo mb-5" />
             {/* <h1 className="heading">Fluolingo</h1> */}
 
             <div className="mb-5">
