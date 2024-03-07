@@ -9,7 +9,7 @@ function Register() {
 
     const baseURL = "https://fluolingo.onrender.com";
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     //  const isAuthenticated = sessionStorage.getItem("isAuthenticated");
     // console.log(isAuthenticated);
 
