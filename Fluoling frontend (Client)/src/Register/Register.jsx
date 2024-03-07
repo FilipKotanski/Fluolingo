@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Card, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./Register.css";
-import Img from "../../public/flamingo-logo.svg";
+import Img from "./flamingo-logo.svg";
 
 function Register() {
 
