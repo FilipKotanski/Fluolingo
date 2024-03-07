@@ -132,6 +132,7 @@ export const AuthenticationProvider = ({ children }) => {
         sessionStorage.removeItem("isAuthenticated");
         sessionStorage.removeItem("email");
         sessionStorage.removeItem("success");
+        sessionStorage.removeItem("user");
 
         
       } else {
