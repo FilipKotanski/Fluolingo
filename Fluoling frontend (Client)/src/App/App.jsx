@@ -11,6 +11,8 @@ import MultiChoice from '../MultiChoiceGame/MultiChoice';
 import { AuthenticationProvider } from '../Authentication/AuthenticationContext';
 import ImageGuess from '../ImageGuessGame/imageguess';
 import ImageGuess2p from '../ImageGuessGame/imageguess2p';
+import ScrabbleGame from '../ScrabbleGame';
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -39,6 +41,7 @@ function App() {
           <Route path="/users/register" element={<Register />} />
           <Route path="/users/login" element={<Login />} />
           <Route path="/users/dashboard/:email?" element={<Dashboard />} />
+          <Route path="/scrabble" element={<ScrabbleGame />} /> {/*Route for ScrabbleGame */}
           <Route path="/image-guess-mode" element={<ImageGuessMode />} /> {/* Route for ImageGuessMode */}
           <Route path="/image-guess-1p" element={<ImageGuess />} /> {/* Route for ImageGuessMode */}
           <Route path="/image-guess-2p" element={<ImageGuess2p />} /> {/* Route for ImageGuessMode */}
